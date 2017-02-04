@@ -23,14 +23,20 @@ for j in range(4):
 for i in range(4):
     GPIO.setup(ROW[i], GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
+state = 0
+
 try:
     while(True):
-        ## CODE ##
+        now = time.time()
         for j in range(4):
-            GPIO.output(COl[j], 0)
+            GPIO.output(COL[j], 0)
             for i in range(4):
                 if GPIO.input(ROW[i]) == 0:
-                    print MATRIX[i][j]
+                    state += 1
+                    next_now = time.time()
+                    if next_now - now > 2:
+                        state =0
+                    print("code: {} state: {}".format(MATRIX[i][j]))
                     while(GPIO.input(ROW[i])== 0):
                         pass
 
