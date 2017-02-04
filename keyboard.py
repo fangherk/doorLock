@@ -36,7 +36,7 @@ try:
                     next_now = time.time()
                     if next_now - now > 2:
                         state =0
-                    print("code: {} state: {}".format(MATRIX[i][j]))
+                    print("code: {} state: {}".format(MATRIX[i][j]), state)
                     while(GPIO.input(ROW[i])== 0):
                         pass
 
